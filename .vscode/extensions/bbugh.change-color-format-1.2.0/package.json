@@ -1,0 +1,118 @@
+{
+	"name": "change-color-format",
+	"license": "MIT",
+	"displayName": "Change Color Format",
+	"description": "Quickly transform colors to and from hex (#RRGGBB/AA), hsl(), rgb() and more.",
+	"version": "1.2.0",
+	"publisher": "bbugh",
+	"icon": "icon.png",
+	"homepage": "https://github.com/bbugh/vscode-change-color-format",
+	"author": {
+		"name": "Brian Bugh",
+		"url": "http://brianbugh.me/"
+	},
+	"bugs": {
+		"url": "https://github.com/bbugh/vscode-change-color-format/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bbugh/vscode-change-color-format.git"
+	},
+	"keywords": [
+		"color",
+		"css",
+		"format",
+		"hsl",
+		"replace",
+		"rgb"
+	],
+	"engines": {
+		"vscode": "^1.14.0"
+	},
+	"capabilities": {
+		"untrustedWorkspaces": {
+			"supported": true
+		},
+		"virtualWorkspaces": true
+	},
+	"categories": [
+		"Formatters"
+	],
+	"activationEvents": [
+		"onCommand:extension.changeColorFormat.commands",
+		"onCommand:extension.changeColorFormat.hexSmartConvert",
+		"onCommand:extension.changeColorFormat.hslSmartConvert",
+		"onCommand:extension.changeColorFormat.rgbSmartConvert"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.changeColorFormat.commands",
+				"title": "Convert Color..."
+			},
+			{
+				"command": "extension.changeColorFormat.hexSmartConvert",
+				"title": "Convert Color to hex (#RRGGBB/AA)"
+			},
+			{
+				"command": "extension.changeColorFormat.hslSmartConvert",
+				"title": "Convert Color to hsl/hsla()"
+			},
+			{
+				"command": "extension.changeColorFormat.rgbSmartConvert",
+				"title": "Convert Color to rgb/rgba()"
+			}
+		]
+	},
+	"scripts": {
+		"prepare": "husky install",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"pretest": "yarn run lint --fix && rimraf ./out && yarn run compile ",
+		"test": "node ./out/test/runTest.js",
+		"watch": "tsc -watch -p ./",
+		"vscode:prepublish": "yarn run pretest",
+		"vscode:package": "vsce package --out out",
+		"vscode:publish": "vsce publish"
+	},
+	"devDependencies": {
+		"@types/color": "3.0.2",
+		"@types/glob": "7.2.0",
+		"@types/mocha": "9.0.0",
+		"@types/node": "16.11.7",
+		"@types/sinon": "10.0.6",
+		"@types/vscode": "1.14.0",
+		"@typescript-eslint/eslint-plugin": "5.3.1",
+		"@typescript-eslint/parser": "5.3.1",
+		"eslint": "8.2.0",
+		"eslint-config-prettier": "8.3.0",
+		"eslint-plugin-prettier": "4.0.0",
+		"glob": "7.2.0",
+		"husky": "6.0.0",
+		"lint-staged": "11.2.6",
+		"mocha": "9.1.3",
+		"prettier": "2.4.1",
+		"sinon": "12.0.1",
+		"typescript": "4.4.4",
+		"vsce": "2.2.0",
+		"vscode-test": "1.6.1"
+	},
+	"dependencies": {
+		"color": "^4.0.1"
+	},
+	"lint-staged": {
+		"*.ts": "eslint --fix"
+	},
+	"__metadata": {
+		"id": "442d2b7b-5280-4112-8488-055f1360521f",
+		"publisherId": "d26cc280-9d7a-46c8-9e89-5cdd0953e1fe",
+		"publisherDisplayName": "Brian Bugh",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1657808401932
+	}
+}

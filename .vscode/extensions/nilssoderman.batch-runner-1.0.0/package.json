@@ -1,0 +1,167 @@
+{
+	"name": "batch-runner",
+	"displayName": "Batch Runner",
+	"publisher": "NilsSoderman",
+	"description": "Execute batch files in the VS Code terminal",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.64.0"
+	},
+	"icon": "media/icon.png",
+	"qna": "marketplace",
+	"license": "SEE LICENSE IN LICENSE",
+	"keywords": [
+		"batch",
+		".bat",
+		".cmd",
+		"cmd",
+		"execute",
+		"run",
+		"menu",
+		"terminal",
+		"btm",
+		".btm"
+	],
+	"categories": [
+		"Other",
+		"Debuggers"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nils-soderman/vscode-batch-runner"
+	},
+	"bugs": {
+		"url": "https://github.com/nils-soderman/vscode-batch-runner/issues"
+	},
+	"author": {
+		"name": "Nils Söderman",
+		"url": "https://nilssoderman.com"
+	},
+	"activationEvents": [
+		"onCommand:batch-utils.execBatchFile",
+		"onCommand:batch-utils.execBatchFileAsAdmin"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "batch-utils.execBatchFile",
+				"category": "Batch Runner",
+				"title": "Run Batch File",
+				"shortTitle": "Run bat File",
+				"icon": "$(run)",
+				"enablement": "resourceLangId == bat && !isInDiffEditor && shellExecutionSupported"
+			},
+			{
+				"command": "batch-utils.execBatchFileAsAdmin",
+				"category": "Batch Runner",
+				"title": "Run Batch File as Administrator",
+				"shortTitle": "Run bat file as admin",
+				"icon": "$(run-above)",
+				"enablement": "resourceLangId == bat && !isInDiffEditor && shellExecutionSupported"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "batch-utils.execBatchFile",
+				"key": "F5",
+				"enablement": "resourceLangId == bat && !isInDiffEditor && shellExecutionSupported && !inDebugMode"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "batch-utils.execBatchFile",
+					"alt": "batch-utils.execBatchFileAsAdmin",
+					"group": "batch",
+					"when": "resourceLangId == bat && shellExecutionSupported"
+				}
+			],
+			"editor/title/context": [
+				{
+					"command": "batch-utils.execBatchFile",
+					"alt": "batch-utils.execBatchFileAsAdmin",
+					"group": "batch",
+					"when": "resourceLangId == bat && shellExecutionSupported"
+				}
+			],
+			"editor/title/run": [
+				{
+					"command": "batch-utils.execBatchFile",
+					"group": "batch",
+					"when": "resourceLangId == bat && !isInDiffEditor && shellExecutionSupported"
+				},
+				{
+					"command": "batch-utils.execBatchFileAsAdmin",
+					"group": "batch",
+					"when": "resourceLangId == bat && !isInDiffEditor && shellExecutionSupported"
+				}
+			]
+		},
+		"configuration": [
+			{
+				"title": "Batch Runner",
+				"properties": {
+					"batchrunner.runBatchIn": {
+						"type": "string",
+						"enum": [
+							"Terminal",
+							"External-cmd"
+						],
+						"enumDescriptions": [
+							"Open the batch files in the built-in VS Code terminal",
+							"Open the batch files in an external cmd window"
+						],
+						"default": "Terminal",
+						"description": "Where the batch file should be executed",
+						"scope": "resource"
+					},
+					"batchrunner.cmdPath": {
+						"type": "string",
+						"default": "C:\\windows\\System32\\cmd.exe",
+						"description": "Path to where 'cmd.exe' is located",
+						"scope": "machine"
+					}
+				}
+			}
+		]
+	},
+	"capabilities": {
+		"virtualWorkspaces": {
+			"supported": false,
+			"description": "Batch runner does currently not support virtual workspaces. Because it needs to have the files on disk to execute them."
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.3",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.64.0",
+		"@typescript-eslint/eslint-plugin": "^4.26.0",
+		"@typescript-eslint/parser": "^4.26.0",
+		"eslint": "^7.27.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.2.2",
+		"typescript": "^4.3.2",
+		"vscode-test": "^1.4.1"
+	},
+	"__metadata": {
+		"id": "8eef5635-0f55-4d3c-8838-567f733b4a94",
+		"publisherId": "4466b699-e267-462b-bcf6-2f1e2e86ebd3",
+		"publisherDisplayName": "Nils Soderman",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": true,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1667053356114,
+		"preRelease": false
+	}
+}

@@ -1,0 +1,440 @@
+{
+	"name": "TypeScriptReact",
+	"scopeName": "source.tsx",
+	"fileTypes": [
+		"tsx"
+	],
+	"uuid": "805375ec-d614-41f5-8993-5843fe63ea82",
+	"patterns": [
+		{
+			"include": "#directives"
+		},
+		{
+			"include": "#statements"
+		},
+		{
+			"include": "#shebang"
+		}
+	],
+	"repository": {
+		"shebang": {
+			"name": "comment.line.shebang.tsx",
+			"match": "\\A(#!).*(?=$)",
+			"captures": {
+				"1": {
+					"name": "punctuation.definition.comment.tsx"
+				}
+			}
+		},
+		"statements": {
+			"patterns": [
+				{
+					"include": "#declaration"
+				},
+				{
+					"include": "#control-statement"
+				},
+				{
+					"include": "#after-operator-block-as-object-literal"
+				},
+				{
+					"include": "#decl-block"
+				},
+				{
+					"include": "#label"
+				},
+				{
+					"include": "#expression"
+				},
+				{
+					"include": "#punctuation-semicolon"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#comment"
+				}
+			]
+		},
+		"declaration": {
+			"patterns": [
+				{
+					"include": "#decorator"
+				},
+				{
+					"include": "#var-expr"
+				},
+				{
+					"include": "#function-declaration"
+				},
+				{
+					"include": "#class-declaration"
+				},
+				{
+					"include": "#interface-declaration"
+				},
+				{
+					"include": "#enum-declaration"
+				},
+				{
+					"include": "#namespace-declaration"
+				},
+				{
+					"include": "#type-alias-declaration"
+				},
+				{
+					"include": "#import-equals-declaration"
+				},
+				{
+					"include": "#import-declaration"
+				},
+				{
+					"include": "#export-declaration"
+				},
+				{
+					"name": "storage.modifier.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(declare|export)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		},
+		"control-statement": {
+			"patterns": [
+				{
+					"include": "#switch-statement"
+				},
+				{
+					"include": "#for-loop"
+				},
+				{
+					"name": "keyword.control.trycatch.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(catch|finally|throw|try)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(break|continue|goto)\\s+([_$[:alpha:]][_$[:alnum:]]*)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))",
+					"captures": {
+						"1": {
+							"name": "keyword.control.loop.tsx"
+						},
+						"2": {
+							"name": "entity.name.label.tsx"
+						}
+					}
+				},
+				{
+					"name": "keyword.control.loop.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(break|continue|do|goto|while)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"begin": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(return)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.control.flow.tsx"
+						}
+					},
+					"end": "(?=[;}]|$|;|^\\s*$|(?:^\\s*(?:abstract|async|class|const|declare|enum|export|function|import|interface|let|module|namespace|return|type|var)\\b))",
+					"patterns": [
+						{
+							"include": "#expression"
+						}
+					]
+				},
+				{
+					"name": "keyword.control.switch.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(case|default|switch)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"include": "#if-statement"
+				},
+				{
+					"name": "keyword.control.conditional.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(else|if)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.control.with.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(with)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.control.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(package)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				},
+				{
+					"name": "keyword.other.debugger.tsx",
+					"match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(debugger)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+				}
+			]
+		},
+		"label": {
+			"patterns": [
+				{
+					"begin": "([_$[:alpha:]][_$[:alnum:]]*)\\s*(:)(?=\\s*\\{)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.label.tsx"
+						},
+						"2": {
+							"name": "punctuation.separator.label.tsx"
+						}
+					},
+					"end": "(?<=\\})",
+					"patterns": [
+						{
+							"include": "#decl-block"
+						}
+					]
+				},
+				{
+					"match": "([_$[:alpha:]][_$[:alnum:]]*)\\s*(:)",
+					"captures": {
+						"1": {
+							"name": "entity.name.label.tsx"
+						},
+						"2": {
+							"name": "punctuation.separator.label.tsx"
+						}
+					}
+				}
+			]
+		},
+		"expression": {
+			"patterns": [
+				{
+					"include": "#expressionWithoutIdentifiers"
+				},
+				{
+					"include": "#identifiers"
+				},
+				{
+					"include": "#expressionPunctuations"
+				}
+			]
+		},
+		"expressionWithoutIdentifiers": {
+			"patterns": [
+				{
+					"include": "#jsx"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#regex"
+				},
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#function-expression"
+				},
+				{
+					"include": "#class-expression"
+				},
+				{
+					"include": "#arrow-function"
+				},
+				{
+					"include": "#paren-expression-possibly-arrow"
+				},
+				{
+					"include": "#cast"
+				},
+				{
+					"include": "#ternary-expression"
+				},
+				{
+					"include": "#new-expr"
+				},
+				{
+					"include": "#instanceof-expr"
+				},
+				{
+					"include": "#object-literal"
+				},
+				{
+					"include": "#expression-operators"
+				},
+				{
+					"include": "#function-call"
+				},
+				{
+					"include": "#literal"
+				},
+				{
+					"include": "#support-objects"
+				},
+				{
+					"include": "#paren-expression"
+				}
+			]
+		},
+		"expressionPunctuations": {
+			"patterns": [
+				{
+					"include": "#punctuation-comma"
+				},
+				{
+					"include": "#punctuation-accessor"
+				}
+			]
+		},
+		"decorator": {
+			"name": "meta.decorator.tsx",
+			"begin": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))\\@",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.decorator.tsx"
+				}
+			},
+			"end": "(?=\\s)",
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		},
+		"var-expr": {
+			"patterns": [
+				{
+					"name": "meta.var.expr.tsx",
+					"begin": "(?=(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(?:(\\bexport)\\s+)?(?:(\\bdeclare)\\s+)?\\b(var|let)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.)))",
+					"end": "(?!(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(?:(\\bexport)\\s+)?(?:(\\bdeclare)\\s+)?\\b(var|let)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.)))((?=;|}|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+)|;|^\\s*$|(?:^\\s*(?:abstract|async|class|const|declare|enum|export|function|import|interface|let|module|namespace|return|type|var)\\b))|((?<!^let|[^\\._$[:alnum:]]let|^var|[^\\._$[:alnum:]]var)(?=\\s*$)))",
+					"patterns": [
+						{
+							"begin": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(?:(\\bexport)\\s+)?(?:(\\bdeclare)\\s+)?\\b(var|let)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))\\s*",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.control.export.tsx"
+								},
+								"2": {
+									"name": "storage.modifier.tsx"
+								},
+								"3": {
+									"name": "storage.type.tsx"
+								}
+							},
+							"end": "(?=\\S)"
+						},
+						{
+							"include": "#destructuring-variable"
+						},
+						{
+							"include": "#var-single-variable"
+						},
+						{
+							"include": "#variable-initializer"
+						},
+						{
+							"include": "#comment"
+						},
+						{
+							"begin": "(,)\\s*((?!\\S)|(?=\\/\\/))",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.separator.comma.tsx"
+								}
+							},
+							"end": "(?<!,)(((?==|;|}|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+)|^\\s*$))|((?<=\\S)(?=\\s*$)))",
+							"patterns": [
+								{
+									"include": "#single-line-comment-consuming-line-ending"
+								},
+								{
+									"include": "#comment"
+								},
+								{
+									"include": "#destructuring-variable"
+								},
+								{
+									"include": "#var-single-variable"
+								},
+								{
+									"include": "#punctuation-comma"
+								}
+							]
+						},
+						{
+							"include": "#punctuation-comma"
+						}
+					]
+				},
+				{
+					"name": "meta.var.expr.tsx",
+					"begin": "(?=(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(?:(\\bexport)\\s+)?(?:(\\bdeclare)\\s+)?\\b(const(?!\\s+enum\\b))(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.)))",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control.export.tsx"
+						},
+						"2": {
+							"name": "storage.modifier.tsx"
+						},
+						"3": {
+							"name": "storage.type.tsx"
+						}
+					},
+					"end": "(?!(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(?:(\\bexport)\\s+)?(?:(\\bdeclare)\\s+)?\\b(const(?!\\s+enum\\b))(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.)))((?=;|}|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+)|;|^\\s*$|(?:^\\s*(?:abstract|async|class|const|declare|enum|export|function|import|interface|let|module|namespace|return|type|var)\\b))|((?<!^const|[^\\._$[:alnum:]]const)(?=\\s*$)))",
+					"patterns": [
+						{
+							"begin": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(?:(\\bexport)\\s+)?(?:(\\bdeclare)\\s+)?\\b(const(?!\\s+enum\\b))(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))\\s*",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.control.export.tsx"
+								},
+								"2": {
+									"name": "storage.modifier.tsx"
+								},
+								"3": {
+									"name": "storage.type.tsx"
+								}
+							},
+							"end": "(?=\\S)"
+						},
+						{
+							"include": "#destructuring-const"
+						},
+						{
+							"include": "#var-single-const"
+						},
+						{
+							"include": "#variable-initializer"
+						},
+						{
+							"include": "#comment"
+						},
+						{
+							"begin": "(,)\\s*((?!\\S)|(?=\\/\\/))",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.separator.comma.tsx"
+								}
+							},
+							"end": "(?<!,)(((?==|;|}|((?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(of|in)\\s+)|^\\s*$))|((?<=\\S)(?=\\s*$)))",
+							"patterns": [
+								{
+									"include": "#single-line-comment-consuming-line-ending"
+								},
+								{
+									"include": "#comment"
+								},
+								{
+									"include": "#destructuring-const"
+								},
+								{
+									"include": "#var-single-const"
+								},
+								{
+									"include": "#punctuation-comma"
+								}
+							]
+						},
+						{
+							"include": "#punctuation-comma"
+						}
+					]
+				}
+			]
+		},
+		"var-single-variable": {
+			"patterns": [
+				{
+					"name": "meta.var-single-variable.expr.tsx",
+					"begin": "(?x)([_$[:alpha:]][_$[:alnum:]]*)(\\!)?(?=\\s*\n# function assignment |\n(=\\s*(\n  ((async\\s+)?(\n    (function\\s*[(<*]) |\n    (function\\s+) |\n    ([_$[:alpha:]][_$[:alnum:]]*\\s*=>)\n  )) |\n  ((async\\s*)?(\n    ((<\\s*$)|([\\(]\\s*((([\\{\\[]\\s*)?$)|((\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})\\s*((:\\s*\\{?$)|((\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+\\s*)?=\\s*)))|((\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\])\\s*((:\\s*\\[?$)|((\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+\\s*)?=\\s*)))))) |\n    # sure shot arrow functions even if => is on new line\n(\n  (<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<]|\\<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<]|\\<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<])*\\>)*\\>)*>\\s*)?\n  [(]\\s*(\\/\\*([^\\*]|(\\*[^\\/]))*\\*\\/\\s*)*\n  (\n    ([)]\\s*:) |                                                                                       # ():\n    ((\\.\\.\\.\\s*)?[_$[:alpha:]][_$[:alnum:]]*\\s*:)                                                                  # [(]param: | [(]...param:\n  )\n) |\n(\n  [<]\\s*[_$[:alpha:]][_$[:alnum:]]*\\s+extends\\s*[^=>]                                                              # < typeparam extends\n) |\n# arrow function possible to detect only with => on same line\n(\n  (<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<]|\\<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<]|\\<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<])*\\>)*\\>)*>\\s*)?                                                                                 # typeparameters\n  \\(\\s*(\\/\\*([^\\*]|(\\*[^\\/]))*\\*\\/\\s*)*(([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\])|(\\.\\.\\.\\s*[_$[:alpha:]]))([^()\\'\\\"\\`]|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\'([^\\'\\\\]|\\\\.)*\\')|(\\\"([^\\\"\\\\]|\\\\.)*\\\")|(\\`([^\\`\\\\]|\\\\.)*\\`))*)?\\)   # parameters\n  (\\s*:\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+)?                                                                        # return type\n  \\s*=>                                                                                               # arrow operator\n)\n  ))\n)) |\n# typeannotation is fn type: < | () | (... | (param: | (param, | (param? | (param= | (param) =>\n(:\\s*(\n  (<) |\n  ([(]\\s*(\n    ([)]) |\n    (\\.\\.\\.) |\n    ([_$[:alnum:]]+\\s*(\n      ([:,?=])|\n      ([)]\\s*=>)\n    ))\n  ))\n)) |\n(:\\s*(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))Function(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))) |\n(:\\s*((<\\s*$)|([\\(]\\s*((([\\{\\[]\\s*)?$)|((\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})\\s*((:\\s*\\{?$)|((\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+\\s*)?=\\s*)))|((\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\])\\s*((:\\s*\\[?$)|((\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+\\s*)?=\\s*))))))) |\n(:\\s*(=>|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(<[^<>]*>)|[^<>(),=])+=\\s*(\n  ((async\\s+)?(\n    (function\\s*[(<*]) |\n    (function\\s+) |\n    ([_$[:alpha:]][_$[:alnum:]]*\\s*=>)\n  )) |\n  ((async\\s*)?(\n    ((<\\s*$)|([\\(]\\s*((([\\{\\[]\\s*)?$)|((\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})\\s*((:\\s*\\{?$)|((\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+\\s*)?=\\s*)))|((\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\])\\s*((:\\s*\\[?$)|((\\s*([^<>\\(\\)\\{\\}]|\\<([^<>]|\\<([^<>]|\\<[^<>]+\\>)+\\>)+\\>|\\([^\\(\\)]+\\)|\\{[^\\{\\}]+\\})+\\s*)?=\\s*)))))) |\n    # sure shot arrow functions even if => is on new line\n(\n  (<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<]|\\<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<]|\\<\\s*([_$[:alpha:]]|(\\{([^\\{\\}]|(\\{([^\\{\\}]|\\{[^\\{\\}]*\\})*\\}))*\\})|(\\(([^\\(\\)]|(\\(([^\\(\\)]|\\([^\\(\\)]*\\))*\\)))*\\))|(\\[([^\\[\\]]|(\\[([^\\[\\]]|\\[[^\\[\\]]*\\])*\\]))*\\]))([^=<>]|=[^<])*\\>)*\\>)*>\\s*)?\n  [(]\\s*(\\/\\*([^\\*]|(\\*[^\\/]))*\\*\\/\\s*)*\n  (\n    ([)]\\s*:) |                                                                                       # ():\n    ((\\.\\.\\.\\s*)?[_$[:alpha:]][_$[:alnum:]]*\\s*:)                                                                  # [(]param: | [(

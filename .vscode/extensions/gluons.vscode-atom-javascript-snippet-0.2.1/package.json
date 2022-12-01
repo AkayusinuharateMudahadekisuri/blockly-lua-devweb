@@ -1,0 +1,90 @@
+{
+	"name": "vscode-atom-javascript-snippet",
+	"version": "0.2.1",
+	"description": "Atom JavaScript Snippet for Visual Studio Code",
+	"icon": "assets/icon.svg",
+	"scripts": {
+		"build": "vsce package"
+	},
+	"displayName": "Atom JavaScript Snippet",
+	"publisher": "gluons",
+	"author": "Saran Tanpituckpong <sarunta@gmail.com>",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^0.10.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"galleryBanner": {
+		"color": "#5FB57D",
+		"theme": "dark"
+	},
+	"badges": [
+		{
+			"description": "License",
+			"url": "https://img.shields.io/github/license/gluons/vscode-atom-javascript-snippet.svg?style=flat-square",
+			"href": "https://github.com/gluons/vscode-atom-javascript-snippet/blob/master/LICENSE"
+		},
+		{
+			"description": "Visual Studio Marketplace",
+			"url": "https://vsmarketplacebadge.apphb.com/version/gluons.vscode-atom-javascript-snippet.svg?style=flat-square",
+			"href": "https://marketplace.visualstudio.com/items?itemName=gluons.vscode-atom-javascript-snippet"
+		},
+		{
+			"description": "Visual Studio Marketplace installs",
+			"url": "https://vsmarketplacebadge.apphb.com/installs/gluons.vscode-atom-javascript-snippet.svg?style=flat-square",
+			"href": "https://marketplace.visualstudio.com/items?itemName=gluons.vscode-atom-javascript-snippet"
+		}
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "javascriptreact",
+				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "typescript",
+				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "typescriptreact",
+				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "vue",
+				"path": "./snippets/javascript.json"
+			}
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gluons/vscode-atom-javascript-snippet.git"
+	},
+	"keywords": [
+		"atom",
+		"javascript",
+		"snippet",
+		"snippets"
+	],
+	"bugs": {
+		"url": "https://github.com/gluons/vscode-atom-javascript-snippet/issues"
+	},
+	"homepage": "https://github.com/gluons/vscode-atom-javascript-snippet",
+	"private": true,
+	"__metadata": {
+		"id": "75815b09-4ae2-49db-80e4-d7ed9c612eba",
+		"publisherId": "f9229375-9718-4c19-ba6d-612790d543de",
+		"publisherDisplayName": "Saran Tanpituckpong",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"preRelease": false,
+		"installedTimestamp": 1657810615425
+	}
+}

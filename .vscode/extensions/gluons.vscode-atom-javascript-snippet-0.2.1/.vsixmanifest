@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Language="en-US" Id="vscode-atom-javascript-snippet" Version="0.2.1" Publisher="gluons"/>
+    <DisplayName>Atom JavaScript Snippet</DisplayName>
+    <Description xml:space="preserve">Atom JavaScript Snippet for Visual Studio Code</Description>
+    <Tags>atom,javascript,snippet,snippets</Tags>
+    <Categories>Snippets</Categories>
+    <GalleryFlags>Public</GalleryFlags>
+    <Badges><Badge Link="https://github.com/gluons/vscode-atom-javascript-snippet/blob/master/LICENSE" ImgUri="https://img.shields.io/github/license/gluons/vscode-atom-javascript-snippet.svg?style=flat-square" Description="License" /><Badge Link="https://marketplace.visualstudio.com/items?itemName=gluons.vscode-atom-javascript-snippet" ImgUri="https://vsmarketplacebadge.apphb.com/version/gluons.vscode-atom-javascript-snippet.svg?style=flat-square" Description="Visual Studio Marketplace" /><Badge Link="https://marketplace.visualstudio.com/items?itemName=gluons.vscode-atom-javascript-snippet" ImgUri="https://vsmarketplacebadge.apphb.com/installs/gluons.vscode-atom-javascript-snippet.svg?style=flat-square" Description="Visual Studio Marketplace installs" /></Badges>
+    <Properties>
+      <Property Id="Microsoft.VisualStudio.Code.Engine" Value="^0.10.0" />
+      <Property Id="Microsoft.VisualStudio.Code.ExtensionDependencies" Value="" />
+      
+        <Property Id="Microsoft.VisualStudio.Services.Links.Source" Value="https://github.com/gluons/vscode-atom-javascript-snippet.git" />
+        <Property Id="Microsoft.VisualStudio.Services.Links.Getstarted" Value="https://github.com/gluons/vscode-atom-javascript-snippet.git" />
+        
+          <Property Id="Microsoft.VisualStudio.Services.Links.GitHub" Value="https://github.com/gluons/vscode-atom-javascript-snippet.git" />
+        
+      
+      <Property Id="Microsoft.VisualStudio.Services.Links.Support" Value="https://github.com/gluons/vscode-atom-javascript-snippet/issues" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://github.com/gluons/vscode-atom-javascript-snippet" />
+      <Property Id="Microsoft.VisualStudio.Services.Branding.Color" Value="#5FB57D" />
+      <Property Id="Microsoft.VisualStudio.Services.Branding.Theme" Value="dark" />
+      <Property Id="Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown" Value="true" />
+      
+      
+    </Properties>
+    <License>extension/LICENSE.txt</License>
+    <Icon>extension/assets/icon.svg</Icon>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Code"/>
+  </Installation>
+  <Dependencies/>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true" />
+    <Asset Type="Microsoft.VisualStudio.Services.Content.Details" Path="extension/README.md" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Content.Changelog" Path="extension/CHANGELOG.md" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Content.License" Path="extension/LICENSE.txt" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Icons.Default" Path="extension/assets/icon.svg" Addressable="true" />
+  </Assets>
+</PackageManifest>
